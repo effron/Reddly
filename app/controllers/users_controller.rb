@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       login(@user)
-      redirect_to @user
+      redirect_to links_url
     else
       set_flash_errors "Invalid Username or Password"
       render :new

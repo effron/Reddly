@@ -1,0 +1,4 @@
+<% Sub.all.each do |sub| %>
+<li><%= link_to sub.name, sub %></li>
+<% end %>
+<li><%= button_to "New subreddly", new_sub_url, method: 'get' %>
