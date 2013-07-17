@@ -1,0 +1,39 @@
+<% if link.persisted? %>
+<% method_name = "put" %>
+<% submit_text = "Edit link" %>
+<% action_name = link_url(link) %>
+<% else %>
+<% method_name = "post" %>
+<% submit_text = "Submit link" %>
+<% action_name = links_url %>
+<% end %>
+
+<form action="<%= action_name %>" method="post">
+  <input type="hidden" name="_method" value="<%= method_name %>">
+
+  <input type="hidden" name="authenticity_token"
+  value="<%= form_authenticity_token %>">
+
+  <label for="link_title">Link title</label>
+  <input type="text" id="link_title" name="link[title]"
+  value="<%= link.title %>">
+
+  <label for="link_url">URL</label>
+  <input type="url" id="link_url" name="link[url]" value="<%= link.url %>">
+
+  <label for="link_body">Body(optional)</label>
+  <textarea id="link_body" name="link[body]"><%= link.body %></textarea>
+
+
+  <label>SUBREDDLYS</label>
+  <% Sub.all.each do |sub| %>
+  <label for="sub_<%= sub.id %>"><%= sub.name %></label>
+  <input type="checkbox" id="sub_<%= sub.id %>" name="link[sub_ids][]"
+  value="<%= sub.id %>" <%= "checked" if link.subs.include?(sub) %>>
+
+  <% end %>
+
+  <input type="hidden" name="link[sub_ids][]" value="">
+  <input type="hidden" name="link[user_id]" value="<%= current_user.id %>">
+  <input type="submit" value="<%= submit_text %>">
+</form>
