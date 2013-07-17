@@ -1,0 +1,27 @@
+<h1>CREATE A SUBREDDLY</h1>
+<form action="<%= subs_url %>" method="post">
+  <input type="hidden" name="authenticity_token"
+  value="<%= form_authenticity_token %>">
+
+  <label for="name">Name this subreddly</label>
+  <input type="text" id="name" name="sub[name]" value="<%= @sub.name %>">
+
+  <input type="hidden" name="sub[user_id]" value="<%= current_user.id %>">
+
+  <label>ADD SOME LINKS</label>
+  <% 5.times do |n| %>
+  <label for="link_title_<%= n+1 %>">Link <%= n+1 %> title</label>
+  <input type="text" id="link_title_<%= n+1 %>"
+  name="sub[links_attributes][<%= n %>][title]">
+
+  <label for="link_url_<%= n+1 %>">Link <%= n+1 %> url</label>
+  <input type="url" id="link_url_<%= n+1 %>"
+  name="sub[links_attributes][<%= n %>][url]">
+
+  <label for="link_body_<%= n+1 %>">Link <%= n+1 %> body</label>
+  <textarea id="link_body_<%= n+1 %>"
+  name="sub[links_attributes][<%= n %>][body]"></textarea>
+  <% end %>
+
+  <input type="submit" value="Create Subreddly">
+</form>

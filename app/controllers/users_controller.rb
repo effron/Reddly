@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       login(@user)
       redirect_to @user
     else
-      set_flash_error "Invalid Username or Password"
+      set_flash_errors "Invalid Username or Password"
       render :new
     end
   end
