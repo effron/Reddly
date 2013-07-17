@@ -35,7 +35,8 @@ class LinksController < ApplicationController
   end
 
   def index
-    @links = Link.all.sort_by{ |link| link.score }.reverse
+    @links = order_links.page(params[:page]).per(3)
+    # Link.all.sort_by{ |link| link.score }.reverse.page(params[:page]).per(3)
   end
 
   def upvote

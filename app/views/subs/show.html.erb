@@ -1,4 +1,6 @@
 <h1><%= @sub.name %></h1>
-<%= render @sub.links %>
-
+<% links = order_links %>
+<% links.each do |link| %>
+<%= render(link) if link.sub_ids.include?(@sub.id) %>
+<% end %>
 <%= link_to "Submit a new link", new_link_url %>

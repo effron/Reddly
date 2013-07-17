@@ -7,7 +7,7 @@ class Link < ActiveRecord::Base
   has_many :comments
   has_many :user_votes
 
-  accepts_nested_attributes_for :comments
+  accepts_nested_attributes_for :comments, reject_if: :all_blank
   validates :title, :url, presence: true
 
   def score

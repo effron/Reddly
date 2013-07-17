@@ -23,6 +23,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'kaminari'
 gem 'jquery-rails'
 gem "twitter-bootstrap-rails"
 # To use ActiveModel has_secure_password
