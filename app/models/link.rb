@@ -1,5 +1,5 @@
 class Link < ActiveRecord::Base
-  attr_accessible :body, :title, :url, :user_id, :sub_ids
+  attr_accessible :body, :title, :url, :user_id, :sub_ids, :comments_attributes
 
   belongs_to :user
   has_many :link_subs

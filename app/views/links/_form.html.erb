@@ -35,5 +35,7 @@
 
   <input type="hidden" name="link[sub_ids][]" value="">
   <input type="hidden" name="link[user_id]" value="<%= current_user.id %>">
+  <h2>Leave a comment on your link</h2>
+    <%= render partial: "nested_comment" %>
   <input type="submit" value="<%= submit_text %>">
 </form>
