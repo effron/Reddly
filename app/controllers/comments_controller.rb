@@ -5,12 +5,12 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new(params[:comment])
-    if @comment.save
-      redirect_to link_url(@comment.link_id)
+    current_user.comments.build(params[:comment])
+    if current_user.save
+      redirect_to :back
     else
       set_flash_errors "Could not save comment"
-      redirect_to link_url
+      redirect_to :back
     end
   end
 
