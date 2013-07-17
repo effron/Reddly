@@ -3,6 +3,7 @@ Reddly::Application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :subs
   resources :links, except: [:index]
+  resources :comments
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

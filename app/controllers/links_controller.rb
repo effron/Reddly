@@ -17,6 +17,7 @@ class LinksController < ApplicationController
 
   def show
     @link = Link.find(params[:id])
+    @comments_by_parent = Comment.comments_by_parent(params[:id])
   end
 
   def update

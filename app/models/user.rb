@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   has_many :links
   has_many :subs
+  has_many :comments
 
   validates :username, presence: true
   validates :password, :password_confirmation, presence: true, on: :create

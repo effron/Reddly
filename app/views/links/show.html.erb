@@ -1,8 +1,28 @@
 <h1><%= link_to @link.title, @link.url %></h1>
 <p><%= @link.body %></p>
 
-<!-- COMMENTS -->
+<h2>Leave a new comment</h2>
+<form action="<%= comments_url %>" method="post">
+  <input type="hidden" name="authenticity_token"
+  value="<%= form_authenticity_token %>">
 
+  <input type="text" name="comment[body]">
+  <input type="hidden" name="comment[link_id]" value="<%= @link.id %>">
+  <input type="hidden" name="comment[user_id]" value="<%= current_user.id %>">
+
+  <input type="submit" value="Reply to link">
+</form>
+
+<ul>
+<% @comments_by_parent[nil].each do |parent| %>
+<%= render partial: "comments/comment",
+            locals: { comment: parent,
+                      comments_by_parent: @comments_by_parent } %>
+
+<% end %>
+</ul>
+
+<h2>Subreddlys</h2>
 <ul>
   <% @link.subs.each do |sub| %>
   <li><%= link_to sub.name, sub %></li>
