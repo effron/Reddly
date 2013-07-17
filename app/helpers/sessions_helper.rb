@@ -19,4 +19,13 @@ module SessionsHelper
     current_user.update_attribute(:session_token, nil)
     session[:session_token] = nil
   end
+
+  def ensure_current_user(user_id)
+    unless user_id == current_user.id
+      logout
+      set_flash_errors "Not yours to edit. You have been logged out"
+      redirect_to new_session_url
+    end
+  end
+
 end

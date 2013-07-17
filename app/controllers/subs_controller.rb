@@ -1,4 +1,6 @@
 class SubsController < ApplicationController
+  before_filter :authorize_user, only: [:new, :create, :edit, :update]
+
   def new
     @sub = Sub.new
   end
@@ -19,10 +21,13 @@ class SubsController < ApplicationController
 
   def edit
     @sub = Sub.find(params[:id])
+    authorize_moderator(@sub)
   end
 
   def update
     @sub = Sub.find(params[:id])
+    authorize_moderator(@sub)
+    ensure_current_user(params[:sub][:user_id])
     if @sub.update_attributes(params[:sub])
       redirect_to @sub
     else

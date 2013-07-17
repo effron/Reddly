@@ -1,0 +1,14 @@
+<h1>EDIT SUBREDDLY <%= @sub.name %></h1>
+<form action="<%= subs_url %>" method="post">
+  <input type="hidden" name="_method" value="put">
+
+  <input type="hidden" name="authenticity_token"
+  value="<%= form_authenticity_token %>">
+
+  <label for="name">Rename this subreddly</label>
+  <input type="text" id="name" name="sub[name]" value="<%= @sub.name %>">
+
+  <input type="hidden" name="sub[user_id]" value="<%= current_user.id %>">
+
+  <input type="submit" value="Update Subreddly">
+</form>
