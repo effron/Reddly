@@ -1,0 +1,11 @@
+<h2><%= link.score %></h2>
+<h2><%= link_to link.title, link.url %></h2>
+<h3><%= link_to "Comments", link %></h3>
+<% if link.user_id == current_user.id %>
+  <%= link_to "Edit link", edit_link_url(link) %>
+<% end %>
+
+<%= render partial: "links/upvote", locals: {link: link} %>
+<%= render partial: "links/downvote", locals: {link: link} %>
+
+<p><%= link.body %></p>

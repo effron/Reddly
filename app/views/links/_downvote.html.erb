@@ -1,0 +1,5 @@
+<form class="downvote" action="<%= link_downvote_url(link.id) %>" method="post">
+  <input type="hidden" name="authenticity_token"
+  value="<%= form_authenticity_token %>">
+  <input type="submit" value="Downvote">
+</form>

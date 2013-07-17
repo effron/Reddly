@@ -1,6 +1,4 @@
-<h1><%= link_to @link.title, @link.url %></h1>
-<p><%= @link.body %></p>
-
+<%= render @link %>
 <h2>Leave a new comment</h2>
 <form action="<%= comments_url %>" method="post">
   <input type="hidden" name="authenticity_token"

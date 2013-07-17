@@ -1,16 +1,4 @@
 <h1><%= @sub.name %></h1>
-<ol>
-  <% @sub.links.each do |link| %>
-  <li><%= link_to link.title, link.url %>
-    <%= link_to "Comments", link %>
-
-    <% if link.user_id == current_user.id %>
-      <%= link_to "Edit link", edit_link_url(link) %>
-    <% end %>
-
-
-  <% end %>
-  </li>
-</ol>
+<%= render @sub.links %>
 
 <%= link_to "Submit a new link", new_link_url %>

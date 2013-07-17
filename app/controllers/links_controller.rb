@@ -1,6 +1,6 @@
 class LinksController < ApplicationController
-  before_filter :authorize_user, only: [:new, :create]
-
+  before_filter :authorize_user, only: [:new, :create, :upvote, :downvote]
+  before_filter :already_voted!, only: [:upvote, :downvote]
   def new
     @link = Link.new
   end
@@ -33,4 +33,22 @@ class LinksController < ApplicationController
   def edit
     @link = Link.find(params[:id])
   end
+
+  def index
+    @links = Link.all.sort_by{ |link| link.score }.reverse
+  end
+
+  def upvote
+    UserVote.create(
+      { link_id: params[:link_id], user_id: current_user.id, vote: 1 } )
+
+    redirect_to :back
+  end
+
+  def downvote
+    UserVote.create(
+      { link_id: params[:link_id], user_id: current_user.id, vote: -1 } )
+    redirect_to :back
+  end
+
 end
