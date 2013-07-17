@@ -21,6 +21,10 @@
   <label for="link_body_<%= n+1 %>">Link <%= n+1 %> body</label>
   <textarea id="link_body_<%= n+1 %>"
   name="sub[links_attributes][<%= n %>][body]"></textarea>
+
+  <input type="hidden" name="sub[links_attributes][<%= n %>][user_id]"
+  value="<%= current_user.id %>">
+
   <% end %>
 
   <input type="submit" value="Create Subreddly">
